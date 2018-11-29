@@ -220,7 +220,7 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // click the item name
         {
-            driver.findElement(By.linkText("Swan Lake")).click();
+            driver.findElement(By.id("Swan Lake")).click();
         }
 
         // check the display

@@ -15,8 +15,10 @@
  */
 package org.terasoluna.gfw.tutorial.selenium;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,6 +41,17 @@ public class WaitWebDriverEventListener extends WebDriverEventListenerAdapter {
 
     @Value("${selenium.webDriverSleepWait}")
     protected long webDriverSleepWait;
+
+    @Override
+    public void beforeFindBy(By by, WebElement webElement,
+            WebDriver webDriver) {
+        try {
+            wait = new WebDriverWait(webDriver, webDriverWait, webDriverSleepWait);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        } catch (TimeoutException e) {
+            logger.warn("Locator hasn't change in default time");
+        }
+    }
 
     @Override
     public void afterClickOn(WebElement element, WebDriver driver) {

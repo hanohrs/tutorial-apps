@@ -214,6 +214,11 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // click the item name
         {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+
+            }
             driver.findElement(By.id("Swan Lake")).click();
         }
         // check page

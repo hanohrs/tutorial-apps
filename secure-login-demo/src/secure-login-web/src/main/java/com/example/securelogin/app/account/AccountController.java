@@ -125,7 +125,7 @@ public class AccountController {
             String fileId = fileUploadSharedService.uploadTempFile(tempFile);
             form.setImageId(fileId);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
         redirectAttributes.addFlashAttribute("accountCreateForm", form);
         return "account/accountConfirm";
